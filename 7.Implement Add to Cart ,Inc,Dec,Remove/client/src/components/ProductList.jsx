@@ -1,36 +1,21 @@
-const ProductList = ({ products, addToCart }) => {
-
+const ProductList = ({products,addToCart})=>{
   return (
-    <div>
+<div>
+ <h1>Products</h1>
 
-      <h1>Products</h1>
+ {products.map((product)=>{
+   return (
+   <div key={product.id}>
+       <h3>{product.title}</h3>
+       <p>{product.price}</p>
 
-      {products.map((product) => (
-
-        <div key={product.id}>
-
-          <h3>{product.title}</h3>
-
-          <p>Price: ${product.price}</p>
-
-          <img
-            src={product.thumbnail}
-            alt={product.title}
-            width="150"
-          />
-
-          <br />
-
-          <button onClick={() => addToCart(product)}>
-            Add To Cart
-          </button>
-
-        </div>
-
-      ))}
-
-    </div>
-  );
-};
-
+       <button onClick={() => addToCart(product)}>Add To cart</button>
+   </div>
+   )
+ }
+ 
+ )}
+</div>
+  )
+}
 export default ProductList;

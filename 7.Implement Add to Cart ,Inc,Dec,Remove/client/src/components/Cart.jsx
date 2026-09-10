@@ -1,70 +1,29 @@
-const Cart = ({
-  cart,
-  increaseQuantity,
-  decreaseQuantity,
-  removeFromCart
-}) => {
+function Cart({ cart,
+  increase,
+  decrease,
+  removeFromCart }){
 
-  const total = cart.reduce((sum, product) => {
-    return sum + product.price * product.quantity;
-  }, 0);
-
-  return (
+    const total = cart.reduce((sum,product)=>{
+      return sum+ product.price*product.quantity;
+    },0);
+  return(
     <div>
 
-      <h1>Shopping Cart</h1>
-
-      {cart.length === 0 ? (
-        <p>Cart is Empty</p>
-      ) : (
-
-        cart.map((product) => (
-
+      <h1>Cart</h1>
+      {cart.map((product)=>{
+        return(
           <div key={product.id}>
-
             <h3>{product.title}</h3>
-
-            <p>
-              Price: ${product.price}
-            </p>
-
-            <button
-              onClick={() => decreaseQuantity(product.id)}
-            >
-              -
-            </button>
-
-            <span> {product.quantity} </span>
-
-            <button
-              onClick={() => increaseQuantity(product.id)}
-            >
-              +
-            </button>
-
-            <p>
-              Subtotal: $
-              {product.price * product.quantity}
-            </p>
-
-            <button
-              onClick={() => removeFromCart(product.id)}
-            >
-              Remove
-            </button>
-
-            <hr />
-
+            <p>Price: ${product.price}</p>
+            <button onClick={() => decrease(product.id)}>-</button>
+            <span>{product.quantity}</span>
+            <button onClick={() => increase(product.id)}>+</button>
+            <button onClick={() => removeFromCart(product.id)}>Remove From Cart</button>
+            <h2>Total$: {total.toFixed(2)}</h2>
           </div>
-
-        ))
-
-      )}
-
-      <h2>Total: ${total}</h2>
-
+        )
+      })}
     </div>
-  );
-};
-
+  )
+}
 export default Cart;
