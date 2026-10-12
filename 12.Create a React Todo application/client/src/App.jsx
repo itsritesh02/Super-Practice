@@ -17,7 +17,7 @@ function App() {
 
   
   const deleteTodo=(id)=>{
-    setTodo(todo.filter((_, i) => i != id))
+    setTodo(todo.filter((_, i) => i !== id))
   }
 
   return (
